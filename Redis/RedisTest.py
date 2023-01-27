@@ -6,7 +6,7 @@ conn = redis.StrictRedis(host='172.17.0.4', port=6379, db=0)
 #conn.hdel('compoundDict_D002','*')
 #print(conn.keys())
 
-print(conn.hkeys('compoundDict_D002'))
+print(conn.hkeys('stopwordDict_D002'))
 
 
 #print(conn.flushall())
