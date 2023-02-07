@@ -6,8 +6,11 @@ conn = redis.StrictRedis(host='172.17.0.4', port=6379, db=0)
 #conn.hdel('compoundDict_D002','*')
 #print(conn.keys())
 
-print(conn.hkeys('stopwordDict_D002'))
+#print(conn.hkeys('stopwordDict_D002'))
+print(conn.keys())
 
+for key in conn.keys():
+    print(type(key) ," : " , key.decode('utf-8'))
 
 #print(conn.flushall())
 #print(conn.hget('compoundDict_D002','배달/NNG 의/JKG 민족/NNG'))
