@@ -19,7 +19,11 @@ git 계정 여러개 설정
 1. ssh-key 생성 
 개인 github
 ssh-keygen -t rsa -b 4096 -C 'ws0601@naver.com'
+회사 gitlab
+ssh-keygen -t rsa -b 4096 -C 'pws0601@hyosung.com'
 
 2. ssh-key 등록
 개인 github
 ssh-add ~/.ssh/id_rsa_github
+회사 gitlab
+ssh-add ~/.ssh/id_rsa_gitlab
