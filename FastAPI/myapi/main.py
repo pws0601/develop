@@ -47,8 +47,6 @@ app.include_router(user_router.router)
 
 
 
-
-
 ##### 데이터 모델링 순서 #####
 """
 import models
