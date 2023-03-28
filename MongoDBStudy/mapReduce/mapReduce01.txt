@@ -1,0 +1,32 @@
+문제 : 2차 지방자치단체 올 시별 의회비 평균을 구해보자.
+    만약 가능하다면 구해진 의회비 평균으로 내림차순 정렬한 결과를 출력한다.
+
+var mapper = function(){
+    emit(this.city_or_province,{expense_sum: this.this_term_expense, count:1 })
+}
+
+var reducer = function(key, values){
+    var sum = 0
+    var counter = 0
+    values.forEach(function(document){
+        sum += document.expense_sum
+        counter += document.count
+    })
+    return {expense_sum: sum, count: counter}
+}
+
+var finalizer = function(key, value){
+    value.expense_avg = value.expense_sum/value.count
+    return value
+}
+
+var options = {
+    out: "Local_expense_sum",
+    query: {sub_category: "의회비" },
+    finalize: finalizer
+}
+
+db.local.mapReduce(mapper, reducer, options)
+
+
+db.Local_expense_sum.find().sort({"value.expense_avg": -1}).pretty()

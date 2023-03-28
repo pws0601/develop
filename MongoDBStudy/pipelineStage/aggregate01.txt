@@ -1,0 +1,47 @@
+###############  $project 스테이지
+
+1. rating 필드만 보이게 하면서 새로운 필드 추가 ($project 스테이지 예제)
+db.rating.aggregate([
+    {
+        $project: {_id: 0, rating: 1, hello: "new field"}
+    }
+])
+
+2. @project 스테이지에서 곱셈, 나눗셈과 같은 연산자 사용
+db.rating.aggregate([
+    {
+        $project: {_id: 0, multiply: {
+            $multiply: ["$_id", "$user_id"] //_id와 user_id를 곱함
+        }}
+    }
+])
+
+
+
+
+
+###############  $group 스테이지
+3. rating 을 기준으로 group 하여 document 갯수를 셈
+db.rating.aggregate([
+    {
+        $group: {_id: "$rating", count: {$sum: 1}}
+    }
+])
+
+* 사용 연산자
+$first : 그룹의 첫번째 값을 반환. $sort 해야 의미가 있다. 
+{
+    $group: {_id: "$item", SalesDate: {$first: "$date"}}
+}
+$last : 그룹의 마지막 값을 반환. $sort 해야 의미가 있다.
+{
+    $group: {_id: "$item", SalesDate: {$last: "$date"}}
+}
+$max : 그룹에서 해당 필드의 최댓값을 반환
+{
+    $group: {_id: "$item", SalesDate: {$max: "$date"}}
+}
+$min : 그룹에서 해당 필드의 최솟값을 반환
+{
+    $group: {_id: "$item", SalesDate: {$min: "$date"}}
+}
