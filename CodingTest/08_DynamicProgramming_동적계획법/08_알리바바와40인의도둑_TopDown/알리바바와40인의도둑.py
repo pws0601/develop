@@ -8,7 +8,7 @@ sys.stdin=open(path+"/input.txt", "rt")
 def DFS(x, y):
     if dy[x][y]>0:
         return dy[x][y]
-        
+    
     if x==0 and y==0:
         return arr[0][0]
     else:
