@@ -1,0 +1,23 @@
+* schedule_interval=None, # DAG 실행 간격
+    - None 일 경우 자동으로 실행하지 않는다.
+* 태스크와 오퍼레이터의 차이
+    - 오퍼레이터는 단일 작업 수행
+    - 태스크는 작업의 올바른 실행을 보장하기 위한 오퍼레이터의 래퍼(wrapper) 또는 매니저(manager)로 생각할수 있다.
+
+
+# DAG 스케쥴 예제
+dag=DAG( # 객체의 인스턴스 생성(구체화) - 모든 워크플로의 시작점
+    dag_id="02_daily_schedule", # DAG 이름
+    start_date=dt.datetime(2023, 4, 25), # DAG 처음 실행 시작 날짜
+    schedule_interval="@daily", # DAG 실행 간격
+    end_date=dt.datetime(year=2023, month=4, day=28), # DAG 종료 날짜
+)
+dag=DAG( # 객체의 인스턴스 생성(구체화) - 모든 워크플로의 시작점
+    dag_id="02_daily_schedule", # DAG 이름
+    start_date=dt.datetime(2023, 4, 25), # DAG 처음 실행 시작 날짜
+    schedule_interval=dt.timedelta(day=3), # DAG 시작 시간으로부터 3일마다 실행
+    end_date=dt.datetime(year=2023, month=4, day=28), # DAG 종료 날짜
+)
+
+* airflow CLI를 사용하여 자격증명 저장
+airflow connections add --conn-type postgres --conn-host localhost --conn-login postgres --conn-password admin my_postgres
