@@ -38,3 +38,9 @@
  - FBV : Function based view
  - CBV : Class based view
  
+10. 이미지 폴더 지정
+ - settings.py
+    아래 항목 추가
+    import os 
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR,'_media')
